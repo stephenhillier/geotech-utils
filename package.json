@@ -1,0 +1,24 @@
+{
+  "name": "geotech-utils",
+  "version": "0.0.1",
+  "description": "Geotechnical calculation tools",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stephenhillier/geotech-utils.git"
+  },
+  "keywords": [
+    "geotech",
+    "geotechnical",
+    "engineering"
+  ],
+  "author": "stephenhillier@gmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/stephenhillier/geotech-utils/issues"
+  },
+  "homepage": "https://github.com/stephenhillier/geotech-utils#readme"
+}
