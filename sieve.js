@@ -42,6 +42,17 @@ export class SingleSieve {
 
 export class SieveStack {
   constructor(params = {}) {
+    /** Creates the SieveStack object. Accepts an object as an argument:
+     *
+     * {
+     *   sizes: an array containing the sieve sizes for this test
+     *   sample: an object containing sample information
+     *   units: a string declaring the units - 'metric' (default) or 'imperial'
+     * }
+     *
+     */
+
+    // unpack arguments
     const { sizes, units, sample } = params;
 
     // set the sample data object for this test, or if not provided, start with empty object
