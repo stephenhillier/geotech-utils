@@ -22,6 +22,8 @@ export class SingleSieve {
   constructor(size, mass = 0, units = 'metric') {
     this.size = size;
     this.mass = mass;
+
+    // Add units for numerical size/mass values
     switch (units) {
       case 'imperial': {
         this.sizeUnit = 'in';
@@ -41,15 +43,23 @@ export class SingleSieve {
 export class SieveStack {
   constructor(sizeArray, units) {
     const constructorStack = []; // array declared as const but new values can be pushed
+
     if (Array.isArray(sizeArray)) {
+      // iterate through array of sieve sizes and add a SingleSieve object for each size
       sizeArray.forEach((item) => {
+        // skip invalid non numeric input
         if (typeof item === 'number' && !Number.isNaN(item)) {
           const newSieve = new SingleSieve(item, units);
           constructorStack.push(newSieve);
         }
       });
     }
+
+    // Add a default 'Pan' sieve to every stack
     constructorStack.push(new SingleSieve('Pan', units));
+
+    // finally, set the object's "stack" property to the array of sieve objects
+    // note: may be better to copy this array (like with splice()).
     this.stack = constructorStack;
   }
 }
