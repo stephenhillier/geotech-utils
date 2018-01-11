@@ -18,22 +18,6 @@
  *       - limited support for imperial sizes or # sizes (e.g. #200, #100 sizes...)
  */
 
-export default class SieveStack {
-  constructor(sizeArray, units) {
-    const constructorStack = []; // array declared as const but new values can be pushed
-    if (Array.isArray(sizeArray)) {
-      sizeArray.forEach((item) => {
-        if (typeof item === 'number' && !Number.isNaN(item)) {
-          const newSieve = new SingleSieve(item, units);
-          constructorStack.push(newSieve);
-        }
-      });
-    }
-    constructorStack.push(new SingleSieve('Pan', units));
-    this.stack = constructorStack;
-  }
-}
-
 export class SingleSieve {
   constructor(size, mass = 0, units = 'metric') {
     this.size = size;
@@ -51,5 +35,21 @@ export class SingleSieve {
         this.massUnit = 'g';
       }
     }
+  }
+}
+
+export default class SieveStack {
+  constructor(sizeArray, units) {
+    const constructorStack = []; // array declared as const but new values can be pushed
+    if (Array.isArray(sizeArray)) {
+      sizeArray.forEach((item) => {
+        if (typeof item === 'number' && !Number.isNaN(item)) {
+          const newSieve = new SingleSieve(item, units);
+          constructorStack.push(newSieve);
+        }
+      });
+    }
+    constructorStack.push(new SingleSieve('Pan', units));
+    this.stack = constructorStack;
   }
 }
