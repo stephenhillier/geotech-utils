@@ -56,7 +56,7 @@ export class SieveStack {
     }
 
     // ensure array is sorted if it was entered out of order
-    constructorStack.sort((a, b) => b - a);
+    constructorStack.sort((a, b) => b.size - a.size);
 
     // Add a default 'Pan' sieve to every stack
     constructorStack.push(new SingleSieve('Pan', units));
