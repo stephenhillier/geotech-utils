@@ -41,12 +41,18 @@ export class SingleSieve {
 }
 
 export class SieveStack {
-  constructor(sizeArray, units = 'metric') {
-    const constructorStack = []; // array declared as const but new values can be pushed
+  constructor(params = {}) {
+    const { sizes, units, sample } = params;
 
-    if (Array.isArray(sizeArray)) {
+    // set the sample data object for this test, or if not provided, start with empty object
+    this.sample = sample || {};
+
+    // create the sieve "stack"
+    const constructorStack = []; // array declared as const but new values will be pushed
+
+    if (Array.isArray(sizes)) {
       // iterate through array of sieve sizes and add a SingleSieve object for each size
-      sizeArray.forEach((item) => {
+      sizes.forEach((item) => {
         // skip invalid non numeric input
         if (typeof item === 'number' && !Number.isNaN(item)) {
           const newSieve = new SingleSieve(item, units);
@@ -64,5 +70,6 @@ export class SieveStack {
     // finally, set the object's "stack" property to the array of sieve objects
     // note: may be better to copy this array (like with splice()).
     this.stack = constructorStack;
+    
   }
 }
