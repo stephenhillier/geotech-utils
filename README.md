@@ -9,20 +9,20 @@ A grain size analysis is a common laboratory test used to help determine the eng
 
 #### Usage:
 ```javascript
-import { SieveStack } from 'sieve';
+import { SieveTest } from 'sieve';
 
 // create an array containing the sizes (in mm) of each sieve
 const sizes = [25, 20, 14, 10, 5, 2.5, 1.25, 0.630, 0.315, 0.160, 0.08];
 
-// pass in the sizes array (using an object) to create a new SieveStack object
-const stack = new SieveStack({ sizes });
+// pass in the sizes array (using an object) to create a new SieveTest object
+const test = new SieveTest({ sizes });
 ```
 **Result:**
 
 ![stack collection example](./Screenshot.png)
 
 **Work in progress!** Roadmap:
-* `SieveStack.prototype.passing()` - calculates percent passing for each sieve in the stack and returns the results as an array
+* `SieveTest.prototype.passing()` - calculates percent passing for each sieve in the stack and returns the results as an array
 
 #### Development:
 To install dev dependencies and run unit tests, clone this repository and run:
