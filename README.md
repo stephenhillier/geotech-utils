@@ -23,3 +23,10 @@ const stack = new SieveStack(sizes, 'metric');
 
 **Work in progress!** Roadmap:
 * `SieveStack.prototype.passing()` - calculates percent passing for each sieve in the stack and returns the results as an array
+
+#### Development:
+To install dev dependencies and run unit tests, clone this repository and run:
+```bash
+npm install
+npm run test
+```
