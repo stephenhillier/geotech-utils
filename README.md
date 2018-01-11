@@ -17,3 +17,6 @@ const stack = new SieveStack(sizes);
 **Result:**
 
 ![stack collection example](./Screenshot.png)
+
+**Work in progress!** Roadmap:
+* `SieveStack.prototype.passing()` - calculates percent passing for each sieve in stack and returns an array
