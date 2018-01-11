@@ -70,6 +70,5 @@ export class SieveStack {
     // finally, set the object's "stack" property to the array of sieve objects
     // note: may be better to copy this array (like with splice()).
     this.stack = constructorStack;
-    
   }
 }
