@@ -8,9 +8,14 @@ describe('SingleSieve', () => {
     const sieve = new SingleSieve(20);
     assert.equal(sieve.size, 20);
   });
-  it('should create a pan object when called with string \"Pan\"', () => {
+  it('should create a pan object when called with string "Pan"', () => {
     const sieve = new SingleSieve('Pan');
     assert.equal(sieve.size, 'Pan');
+  });
+  it('should create a sieve with imperial sizes if given arg "imperial"', () => {
+    const sieve = new SingleSieve('.75', 0, 'imperial');
+    assert.equal(sieve.sizeUnit, 'in');
+    assert.equal(sieve.massUnit, 'lb');
   });
 });
 
