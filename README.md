@@ -15,7 +15,7 @@ import { SieveStack } from 'sieve';
 const sizes = [25, 20, 14, 10, 5, 2.5, 1.25, 0.630, 0.315, 0.160, 0.08];
 
 // pass the array into the constructor to create a new SieveStack object
-const stack = new SieveStack(sizes);
+const stack = new SieveStack(sizes, 'metric');
 ```
 **Result:**
 
