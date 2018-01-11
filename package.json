@@ -4,7 +4,7 @@
   "description": "Geotechnical calculation tools",
   "main": "index.js",
   "scripts": {
-    "test": "mocha test --require babel-core/register"
+    "test": "nyc mocha test --require babel-core/register"
   },
   "repository": {
     "type": "git",
@@ -29,6 +29,7 @@
     "eslint": "^4.15.0",
     "eslint-config-airbnb-base": "^12.1.0",
     "eslint-plugin-import": "^2.8.0",
-    "mocha": "^4.1.0"
+    "mocha": "^4.1.0",
+    "nyc": "^11.4.1"
   }
 }
