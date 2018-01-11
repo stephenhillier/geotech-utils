@@ -25,7 +25,7 @@ describe('SieveStack', () => {
   it('should automatically add a pan to the bottom of the stack if not given one', () => {
     const testSizes = [20, 10, 0.08];
     const stack = new SieveStack(testSizes);
-    assert.equal(stack.stack[stack.stack.length - 1], 'Pan');
+    assert.equal(stack.stack[stack.stack.length - 1].size, 'Pan');
   });
   it('should sort out of order inputs', () => {
     const testSizes = [10, 0.08, 20];
