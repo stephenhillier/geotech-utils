@@ -4,9 +4,13 @@ import { SingleSieve, SieveStack } from '../sieve';
 const assert = require('assert');
 
 describe('SingleSieve', () => {
-  it('should create a sieve object with a given size', () => {
+  it('should create a sieve object with a given size (try 20)', () => {
     const sieve = new SingleSieve(20);
-    assert.equal(sieve, 20);
+    assert.equal(sieve.size, 20);
+  });
+  it('should create a pan object when called with string \"Pan\"', () => {
+    const sieve = new SingleSieve('Pan');
+    assert.equal(sieve.size, 'Pan');
   });
 });
 
