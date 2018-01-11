@@ -1,9 +1,7 @@
 /* eslint-env mocha */
-// import { SingleSieve, SieveStack } from '../sieve';
+import { SingleSieve, SieveStack } from '../sieve';
 
 const assert = require('assert');
-const { SingleSieve } = require('../sieve').SingleSieve;
-const { SieveStack } = require('../sieve').SieveStack;
 
 describe('SingleSieve', () => {
   it('should create a sieve object with a given size', () => {
