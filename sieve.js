@@ -19,9 +19,9 @@
  */
 
 export class SingleSieve {
-  constructor(size, mass = 0, units = 'metric') {
+  constructor(size, units = 'metric') {
     this.size = size;
-    this.mass = mass;
+    this.mass = 0;
 
     // Add units for numerical size/mass values
     switch (units) {
