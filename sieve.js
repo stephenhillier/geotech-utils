@@ -41,7 +41,7 @@ export class SingleSieve {
 }
 
 export class SieveStack {
-  constructor(sizeArray, units) {
+  constructor(sizeArray, units = 'metric') {
     const constructorStack = []; // array declared as const but new values can be pushed
 
     if (Array.isArray(sizeArray)) {
