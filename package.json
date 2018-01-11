@@ -4,7 +4,7 @@
   "description": "Geotechnical calculation tools",
   "main": "index.js",
   "scripts": {
-    "test": "mocha test --compilers js:babel-core/register"
+    "test": "mocha test --require babel-core/register"
   },
   "repository": {
     "type": "git",
