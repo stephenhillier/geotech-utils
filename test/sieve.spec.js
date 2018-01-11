@@ -30,8 +30,8 @@ describe('SieveStack', () => {
   it('should sort out of order inputs', () => {
     const testSizes = [10, 0.08, 20];
     const stack = new SieveStack(testSizes);
-    assert.equal(stack.stack[0], 20);
-    assert.equal(stack.stack[1], 10);
-    assert.equal(stack.stack[2], 0.08);
+    assert.equal(stack.stack[0].size, 20);
+    assert.equal(stack.stack[1].size, 10);
+    assert.equal(stack.stack[2].size, 0.08);
   });
 });
