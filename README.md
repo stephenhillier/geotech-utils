@@ -4,6 +4,9 @@ A library of utilities for geotechnical analysis and lab calculations written in
 ## module: sieve.js
 Contains helper classes for storing the results of a grain size analysis (or sieve) test.
 
+#### Background:
+A grain size analysis is a common laboratory test used to help determine the engineering properties of soil and aggregate. A soil sample is mechanically sorted using a stack of sieves, and each sieve retains particles of a different size. The results indicate the percentage of gravels, sands, and fine particles (i.e. silt and clay) in the sample.
+
 #### Usage:
 ```javascript
 import { SieveStack } from 'sieve';
@@ -19,4 +22,4 @@ const stack = new SieveStack(sizes);
 ![stack collection example](./Screenshot.png)
 
 **Work in progress!** Roadmap:
-* `SieveStack.prototype.passing()` - calculates percent passing for each sieve in stack and returns an array
+* `SieveStack.prototype.passing()` - calculates percent passing for each sieve in the stack and returns the results as an array
