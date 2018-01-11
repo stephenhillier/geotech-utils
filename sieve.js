@@ -38,7 +38,7 @@ export class SingleSieve {
   }
 }
 
-export default class SieveStack {
+export class SieveStack {
   constructor(sizeArray, units) {
     const constructorStack = []; // array declared as const but new values can be pushed
     if (Array.isArray(sizeArray)) {
