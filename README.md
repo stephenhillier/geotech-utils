@@ -21,6 +21,8 @@ const test = new SieveTest({ sizes });
 
 ![stack collection example](./Screenshot.png)
 
+This simple data structure can be used with a modern web framework (like Vue.JS) to generate input fields/models and store data for a lab testing or sample database application. 
+
 **Work in progress!** Roadmap:
 * `SieveTest.prototype.passing()` - calculates percent passing for each sieve in the stack and returns the results as an array
 
