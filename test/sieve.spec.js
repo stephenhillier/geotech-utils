@@ -34,4 +34,19 @@ describe('SieveStack', () => {
     assert.equal(stack.stack[1].size, 10);
     assert.equal(stack.stack[2].size, 0.08);
   });
+  it('should never allow more than one pan', () => {
+    const testSizes = ['Pan', 'Pan', 20, 'Pan'];
+    const stack = new SieveStack(testSizes);
+    assert.equal(stack.stack[0].size, 20);
+    assert.equal(stack.stack[1].size, 'Pan');
+    assert.equal(stack.stack.length, 2);
+  });
+  it('should discard strings in the array passed to the constructor', () => {
+    const testSizes = ['asdf', 20, 'one', 10];
+    const stack = new SieveStack(testSizes);
+    assert.equal(stack.stack[0].size, 20);
+    assert.equal(stack.stack[1].size, 10);
+    assert.equal(stack.stack[2].size, 'Pan');
+    assert.equal(stack.stack.length, 3);
+  });
 });
