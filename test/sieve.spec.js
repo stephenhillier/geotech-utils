@@ -33,5 +33,5 @@ describe('SieveStack', () => {
     assert.equal(stack.stack[0], 20);
     assert.equal(stack.stack[1], 10);
     assert.equal(stack.stack[2], 0.08);
-  })
+  });
 });
