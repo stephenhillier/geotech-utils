@@ -46,4 +46,22 @@ describe('SieveTest', () => {
     assert.equal(stack.stack[1].size, 'Pan');
     assert.equal(stack.stack.length, 2);
   });
+
+  describe('SieveTest.prototype.index()', () => {
+    it('should return the correct index of a given sieve size', () => {
+      const sizes = [20, 16, 12, 0.08];
+      const test = new SieveTest({ sizes });
+      const position1 = test.index(20);
+      const position2 = test.index(12);
+      const position3 = test.index(0.08);
+      assert.equal(test.stack[position1].size, 20);
+      assert.equal(test.stack[position2].size, 12);
+      assert.equal(test.stack[position3].size, 0.08);
+    });
+    it('should throw an error if sieve stack was deleted', () => {
+      const test = new SieveTest();
+      test.stack = []; // reset stack
+      assert.throws(() => { test.index(20); }, Error);
+    });
+  });
 });

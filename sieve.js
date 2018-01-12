@@ -82,4 +82,12 @@ export class SieveTest {
     // note: may be better to copy this array (like with splice()).
     this.stack = constructorStack;
   }
+
+  index(size) {
+    if (this.stack.length) {
+      return this.stack.findIndex(sieve => sieve.size === size);
+    }
+    // Array can't be found
+    throw new Error('There are no sieves in the SieveTest stack array. Add some sieves to the test');
+  }
 }
