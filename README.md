@@ -23,6 +23,10 @@ const test = new SieveTest({ sizes });
 
 This simple data structure can be used with a modern web framework (like Vue.JS) to generate input fields/models and store data for a lab testing or sample database application. 
 
+#### Prototype methods
+`SieveTest.prototype.add(size)` - adds a sieve of a given size
+`SieveTest.prototype.index(size)` - returns the index of the sieve with the given size
+
 **Work in progress!** Roadmap:
 * `SieveTest.prototype.passing()` - calculates percent passing for each sieve in the stack and returns the results as an array
 
