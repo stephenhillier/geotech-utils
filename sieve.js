@@ -11,9 +11,10 @@
  * - creates a "stack" of sieves and populates it with sieve objects from class SingleSieve
  * - a "Pan" sieve is always created
  * - usage:
- *      const stack = new SieveTest(sizes, units);
+ *      const stack = new SieveTest({ sizes, sample, units });
  *      where:
  *       - "sizes" is an array containing numerical size of each sieve.
+ *       - "sample" is an object containing data about the soil sample (class coming soon)
  *       - "units" is an optional type of unit e.g. metric or imperial. Defaults to metric.
  *       - limited support for imperial sizes or # sizes (e.g. #200, #100 sizes...)
  */
