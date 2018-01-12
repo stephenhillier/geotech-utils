@@ -90,4 +90,14 @@ export class SieveTest {
     // Array can't be found
     throw new Error('There are no sieves in the SieveTest stack array. Add some sieves to the test');
   }
+
+  add(size) {
+    const newSieve = new SingleSieve(size);
+
+    // find the right position for the new sieve in the sorted sieve stack
+    const position = this.stack.findIndex(sieve => (sieve.size === 'Pan' || newSieve.size > sieve.size));
+
+    // insert new sieve object into stack
+    this.stack.splice(position, 0, newSieve);
+  }
 }
