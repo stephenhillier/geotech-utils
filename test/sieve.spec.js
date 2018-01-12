@@ -99,4 +99,13 @@ describe('SieveTest', () => {
       assert.throws(() => { test.removeSieve(2.5); }, Error, 'Error not thrown');
     });
   });
+
+  describe('SieveTest.prototype.sieve()', () => {
+    it('should return the specified SingleSieve object', () => {
+      const sizes = [20, 16, 12, 5];
+      const test = new SieveTest({ sizes });
+      assert.equal(test.sieve(16) instanceof SingleSieve, true, 'did not return a SingleSieve object');
+      assert.equal(test.sieve(16).size, 16, 'did not return the correct size');
+    });
+  });
 });

@@ -112,4 +112,9 @@ export class SieveTest {
       throw new Error(`Sieve with size ${size} not found`);
     }
   }
+
+  // returns the SingleSieve object of the specified size
+  sieve(size) {
+    return this.stack.find(sieve => sieve.size === size);
+  }
 }
