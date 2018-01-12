@@ -102,9 +102,12 @@ export class SieveTest {
   }
 
   removeSieve(size) {
+    // this.index returns -1 if sieve is not found
     if (this.index(size) !== -1) {
+      // use splice to delete the specified sieve
       this.stack.splice(this.index(size), 1);
     } else {
+      // this.index did not find sieve and returned -1
       throw new Error(`Sieve with size ${size} not found`);
     }
   }
