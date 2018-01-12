@@ -100,4 +100,12 @@ export class SieveTest {
     // insert new sieve object into stack
     this.stack.splice(position, 0, newSieve);
   }
+
+  removeSieve(size) {
+    if (this.index(size) !== -1) {
+      this.stack.splice(this.index(size), 1);
+    } else {
+      throw new Error(`Sieve with size ${size} not found`);
+    }
+  }
 }

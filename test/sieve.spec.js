@@ -83,4 +83,20 @@ describe('SieveTest', () => {
       assert.equal(test.stack[3].size, 0.08, '0.08 mm sieve not placed before pan');
     });
   });
+
+  describe('SieveTest.prototype.removeSieve()', () => {
+    it('should remove the specified sieve and replace it with the next smallest', () => {
+      const sizes = [20, 16, 12, 5];
+      const test = new SieveTest({ sizes });
+      test.removeSieve(16);
+      assert.equal(test.stack[0].size, 20);
+      assert.equal(test.stack[1].size, 12);
+      assert.equal(test.stack.length, sizes.length);
+    });
+    it('should throw an error if an invalid size is given', () => {
+      const sizes = [20, 16, 12, 5];
+      const test = new SieveTest({ sizes });
+      assert.throws(() => { test.removeSieve(2.5); }, Error, 'Error not thrown');
+    });
+  });
 });
