@@ -69,15 +69,15 @@ describe('SieveTest', () => {
     it('should add a sieve to the stack', () => {
       const sizes = [20, 16, 12, 5, 0.08];
       const test = new SieveTest({ sizes });
-      test.add(2.5);
+      test.addSieve(2.5);
       // add + 2 to sizes.length because all new SieveTest objects gain a "pan" object too
       assert.equal(test.stack.length, sizes.length + 2);
     });
     it('should add the sieve to the right place in the stack', () => {
       const sizes = [20, 12];
       const test = new SieveTest({ sizes });
-      test.add(16);
-      test.add(0.08);
+      test.addSieve(16);
+      test.addSieve(0.08);
       assert.equal(test.stack[0].size, 20);
       assert.equal(test.stack[1].size, 16, '16 mm sieve not placed between 20 mm and 12 mm');
       assert.equal(test.stack[3].size, 0.08, '0.08 mm sieve not placed before pan');

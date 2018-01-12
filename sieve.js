@@ -91,7 +91,7 @@ export class SieveTest {
     throw new Error('There are no sieves in the SieveTest stack array. Add some sieves to the test');
   }
 
-  add(size) {
+  addSieve(size) {
     const newSieve = new SingleSieve(size);
 
     // find the right position for the new sieve in the sorted sieve stack
