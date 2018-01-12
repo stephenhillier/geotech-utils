@@ -22,14 +22,13 @@
   },
   "homepage": "https://github.com/stephenhillier/geotech-utils#readme",
   "devDependencies": {
-    "babel": "^6.23.0",
     "babel-core": "^6.26.0",
     "babel-preset-es2015": "^6.24.1",
-    "chai": "^4.1.2",
     "eslint": "^4.15.0",
     "eslint-config-airbnb-base": "^12.1.0",
     "eslint-plugin-import": "^2.8.0",
     "mocha": "^4.1.0",
     "nyc": "^11.4.1"
-  }
+  },
+  "dependencies": {}
 }
