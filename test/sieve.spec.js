@@ -65,7 +65,7 @@ describe('SieveTest', () => {
     });
   });
 
-  describe('SieveTest.prototype.add()', () => {
+  describe('SieveTest.prototype.addSieve()', () => {
     it('should add a sieve to the stack', () => {
       const sizes = [20, 16, 12, 5, 0.08];
       const test = new SieveTest({ sizes });
