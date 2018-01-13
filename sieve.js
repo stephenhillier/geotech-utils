@@ -11,12 +11,11 @@
  * - creates a "stack" of sieves and populates it with sieve objects from class SingleSieve
  * - a "Pan" sieve is always created
  * - usage:
- *      const stack = new SieveTest({ sizes, sample, units });
+ *      const test = new SieveTest({ sizes, sample, units });
  *      where:
  *       - "sizes" is an array containing numerical size of each sieve.
  *       - "sample" is an object containing data about the soil sample (class coming soon)
  *       - "units" is an optional type of unit e.g. metric or imperial. Defaults to metric.
- *       - limited support for imperial sizes or # sizes (e.g. #200, #100 sizes...)
  */
 
 export class SingleSieve {
@@ -66,7 +65,11 @@ export class SieveTest {
     const { sizes, units, sample } = params;
 
     // set the sample data object for this test, or if not provided, start with empty object
-    this.sample = sample || {};
+    this.sampleData = sample || {
+      wetMass: 0,
+      dryMass: 0,
+      washedMass: 0,
+    };
 
     // create the sieve "stack"
     const constructorStack = []; // array declared as const but new values will be pushed
@@ -117,7 +120,7 @@ export class SieveTest {
       // use splice to delete the specified sieve
       this.stack.splice(this.index(size), 1);
     } else {
-      // this.index did not find sieve and returned -1
+      // this.index did not find sieve
       throw new Error(`Sieve with size ${size} not found`);
     }
   }
@@ -125,5 +128,48 @@ export class SieveTest {
   // returns the SingleSieve object of the specified size
   sieve(size) {
     return this.stack.find(sieve => sieve.size === size);
+  }
+
+  passing() {
+    /**
+     * SieveTest.prototype.passing()
+     *
+     * Generally, the percent of soil "passing" (passing through) each sieve is plotted.
+     *
+     * To calculate this, iterate through the sieves (starting at the top) and keep track of
+     * the cumulative total mass down to that point in the stack. The percent passing at any
+     * point is the total mass of the sample minus the mass retained on the sieves so far
+     * (i.e. at and above that point).
+     */
+
+    // get the sieve array and the sample dryMass from the instance
+    const { stack } = this;
+    const { dryMass } = this.sampleData;
+
+    // make sure dryMass has been inputted and that sieves exist in the sieve array
+    if (dryMass && stack.length) {
+      const result = [];
+      let cumulativeMass = 0;
+
+      for (let i = 0; i < stack.length; i += 1) {
+        const sieve = stack[i];
+
+        // this calculates how much soil passed through the sieve:
+        const passing = dryMass - sieve.mass - cumulativeMass;
+        // and how much soil has been retained by sieves so far (including current sieve):
+        cumulativeMass += sieve.mass;
+
+        // Push the results from all the sieves (do not include the pan) into the result array.
+        if (sieve.size !== 'Pan') {
+          result.push({
+            size: sieve.size,
+            mass: sieve.mass,
+            percentPassing: ((passing / dryMass) * 100).toFixed(1),
+          });
+        }
+      }
+      return result;
+    }
+    throw new Error('SieveTest.prototype.passing() requires both dryMass and sieve properties to be present');
   }
 }

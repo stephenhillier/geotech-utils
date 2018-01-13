@@ -7,15 +7,23 @@ Contains helper classes for storing the results of a grain size analysis (or sie
 #### Background:
 A grain size analysis is a common laboratory test used to help determine the engineering properties of soil and aggregate. A soil sample is mechanically sorted using a stack of sieves, and each sieve retains particles of a different size. The results indicate the percentage of gravels, sands, and fine particles (i.e. silt and clay) in the sample.
 
-#### Usage:
+#### Quick start:
 ```javascript
 import { SieveTest } from 'sieve';
 
 // create an array containing the sizes (in mm) of each sieve
 const sizes = [25, 20, 14, 10, 5, 2.5, 1.25, 0.630, 0.315, 0.160, 0.08];
 
-// pass in the sizes array (using an object) to create a new SieveTest object
-const test = new SieveTest({ sizes });
+// define the soil sample to be tested
+const sample = {
+  name: 'Sample 1',
+  wetMass: 2100,
+  dryMass: 2000,
+  washedMass: 1900
+};
+
+// pass in an object with the sizes and the sample to create a new SieveTest object
+const test = new SieveTest({ sizes, sample });
 ```
 **Result:**
 
@@ -30,11 +38,22 @@ Use the following prototype methods to modify your SieveTest instance:
 
 `SieveTest.prototype.removeSieve(size)` - removes the specified sieve
 
-`SieveTest.prototype.index(size)` - returns the index of the specified sieve
+`SieveTest.prototype.sieve(size)` - returns the sieve object with the specified size
 
+Additionally, each sieve object has a "retained" property, denoting the mass of soil retained (recorded during the test). Continuing from the example above:
+```javascript
+// record the retained value for the 20 mm sieve by passing a number into retained()
+test.sieve(16).retained(155);
 
-**Work in progress!** Roadmap:
-* `SieveTest.prototype.passing()` - calculates percent passing for each sieve in the stack and returns the results as an array
+// get the retained value by calling it with no arguments
+console.log(test.sieve(16).retained())
+>>> 155
+```
+
+Finally, to calculate the results of the test:
+
+`SieveTest.prototype.passing()` - returns an array of "percent passing" values (the results of the test)
+
 
 #### Development:
 To install dev dependencies and run unit tests, clone this repository and run:

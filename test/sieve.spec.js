@@ -121,4 +121,42 @@ describe('SieveTest', () => {
       assert.equal(test.sieve(16).size, 16, 'did not return the correct size');
     });
   });
+
+  describe('SieveTest.prototype.passing()', () => {
+    it('should calculate the percent passing for a given sample and set of sieves', () => {
+      const sizes = [16, 12, 5, 2];
+      // define the sample
+      const sample = {
+        wetMass: 2100,
+        dryMass: 2000,
+        washedMass: 1900,
+      };
+      const test = new SieveTest({ sizes, sample });
+
+      // put 100g in every sieve
+      test.stack.forEach((sieve) => { sieve.retained(100); });
+
+      // add an empty sieve at top of stack (have one sieve with 100% passing)
+      test.addSieve(20);
+
+      // manually set some variables to keep assert calls tidier
+      // e.g. set passing20 to the 20 mm sieve object in the passing() array
+      const passing20 = test.passing().find(sieve => sieve.size === 20);
+      const passing16 = test.passing().find(sieve => sieve.size === 16);
+      const passing12 = test.passing().find(sieve => sieve.size === 12);
+      const passing5 = test.passing().find(sieve => sieve.size === 5);
+      const passing2 = test.passing().find(sieve => sieve.size === 2);
+
+      assert.equal(passing20.percentPassing, 100.0, 'Incorrect percent passing on 20 mm sieve');
+      assert.equal(passing16.percentPassing, 95.0, 'Incorrect percent passing on 16 mm sieve');
+      assert.equal(passing12.percentPassing, 90.0, 'Incorrect percent passing on 12 mm sieve');
+      assert.equal(passing5.percentPassing, 85.0, 'Incorrect percent passing on 5 mm sieve');
+      assert.equal(passing2.percentPassing, 80.0, 'Incorrect percent passing on 2 mm sieve');
+    });
+    it('should throw an error if calling passing() without sample data or a set of sieves', () => {
+      const sizes = [16, 12, 5, 2];
+      const test = new SieveTest({ sizes });
+      assert.throws(() => { test.passing(); }, Error, 'Did not throw an error');
+    });
+  });
 });
