@@ -31,16 +31,7 @@ const test = new SieveTest({ sizes, sample });
 
 This simple data structure can be used with a modern web framework (like Vue.JS) to generate input fields/models and store data for a lab testing or sample database application. 
 
-#### Prototype methods
-Use the following prototype methods to modify your SieveTest instance:
-
-`SieveTest.prototype.addSieve(size)` - adds a sieve of a given size
-
-`SieveTest.prototype.removeSieve(size)` - removes the specified sieve
-
-`SieveTest.prototype.sieve(size)` - returns the sieve object with the specified size
-
-Additionally, each sieve object has a "retained" property, denoting the mass of soil retained (recorded during the test). Continuing from the example above:
+Each sieve object has a "retained" property, denoting the mass of soil retained (recorded during the test). Continuing from the example above:
 ```javascript
 // record the retained value for the 20 mm sieve by passing a number into retained()
 test.sieve(16).retained(155);
@@ -52,8 +43,16 @@ console.log(test.sieve(16).retained())
 
 Finally, to calculate the results of the test:
 
-`SieveTest.prototype.passing()` - returns an array of "percent passing" values (the results of the test)
+`SieveTest.prototype.passing()` - returns an array of "percent passing" values (to be plotted)
 
+#### Additional prototype methods
+Use the following prototype methods to modify your SieveTest instance:
+
+`SieveTest.prototype.addSieve(size)` - adds a sieve of a given size
+
+`SieveTest.prototype.removeSieve(size)` - removes the specified sieve
+
+`SieveTest.prototype.sieve(size)` - returns the sieve object with the specified size
 
 #### Development:
 To install dev dependencies and run unit tests, clone this repository and run:
