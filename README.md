@@ -58,9 +58,9 @@ Use the following prototype methods to modify your SieveTest instance:
 
 **I have forms that allow users to record masses, but why aren't the results calculated properly?**
 
-HTML forms return a string, even if the input type is "number". Numeric values need to be of type Number. Vue.JS can typecast input; use this syntax:
+HTML forms return a string, even if `<input type="number">`. Numeric values need to be of type Number. Vue.JS can typecast input; use this syntax:
 
-`<input v-model.number="sieve.mass">`
+`<input v-model.number="sieve.mass" type="number">`
 
 ### Development:
 To install dev dependencies and run unit tests, clone this repository and run:
