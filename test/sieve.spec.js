@@ -13,9 +13,22 @@ describe('SingleSieve', () => {
     assert.equal(sieve.size, 'Pan');
   });
   it('should create a sieve with imperial sizes if given arg "imperial"', () => {
-    const sieve = new SingleSieve('.75', 'imperial');
+    const sieve = new SingleSieve(0.75, 'imperial');
     assert.equal(sieve.sizeUnit, 'in');
     assert.equal(sieve.massUnit, 'lb');
+  });
+
+  describe('SingleSieve.prototype.retained()', () => {
+    it('should set this.mass if given a number as input', () => {
+      const sieve = new SingleSieve(20);
+      sieve.retained(150);
+      assert.equal(sieve.mass, 150);
+    });
+    it('should return this.mass if not given an input', () => {
+      const sieve = new SingleSieve(20);
+      sieve.retained(150);
+      assert.equal(sieve.retained(), 150);
+    });
   });
 });
 
