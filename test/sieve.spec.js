@@ -12,6 +12,12 @@ describe('SingleSieve', () => {
     const sieve = new SingleSieve('Pan');
     assert.equal(sieve.size, 'Pan');
   });
+  it('should throw an error if not called with a number, except for special string case "Pan"', () => {
+    assert.throws(() => {
+      const sieve = new SingleSieve('NotPan');
+      sieve.retained();
+    }, Error, 'Did not throw an error when SingleSieve was called with an invalid string');
+  });
   it('should create a sieve with imperial sizes if given arg "imperial"', () => {
     const sieve = new SingleSieve(0.75, 'imperial');
     assert.equal(sieve.sizeUnit, 'in');

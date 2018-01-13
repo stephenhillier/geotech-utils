@@ -20,22 +20,26 @@
 
 export class SingleSieve {
   constructor(size, units = 'metric') {
-    this.size = size;
-    this.mass = 0;
+    if ((size && typeof size === 'number' && !Number.isNaN(size)) || (size === 'Pan')) {
+      this.size = size;
+      this.mass = 0;
 
-    // Add units for numerical size/mass values
-    switch (units) {
-      case 'imperial': {
-        this.sizeUnit = 'in';
-        this.massUnit = 'lb';
-        break;
+      // Add units for numerical size/mass values
+      switch (units) {
+        case 'imperial': {
+          this.sizeUnit = 'in';
+          this.massUnit = 'lb';
+          break;
+        }
+        case 'metric': // let metric fall through to default
+        default: {
+          // default to metric units
+          this.sizeUnit = 'mm';
+          this.massUnit = 'g';
+        }
       }
-      case 'metric': // let metric fall through to default
-      default: {
-        // default to metric units
-        this.sizeUnit = 'mm';
-        this.massUnit = 'g';
-      }
+    } else {
+      throw new Error('SingleSieve constructor was called without a valid size');
     }
   }
 
