@@ -4,10 +4,10 @@ A library of utilities for geotechnical analysis and lab calculations written in
 ## module: sieve.js
 Contains helper classes for storing the results of a grain size analysis (or sieve) test.
 
-### Background:
+## Background:
 A grain size analysis is a common laboratory test used to help determine the engineering properties of soil and aggregate. A soil sample is mechanically sorted using a stack of sieves, and each sieve retains particles of a different size. The results indicate the percentage of gravels, sands, and fine particles (i.e. silt and clay) in the sample.
 
-### Quick start:
+## Quick start:
 ```javascript
 import { SieveTest } from 'sieve';
 
@@ -43,9 +43,9 @@ console.log(test.sieve(16).retained());
 
 Finally, to calculate the results of the test:
 
-`SieveTest.prototype.passing()` - returns an array of "percent passing" values (to be plotted). Remember, graphs need at least one point with 100% passing. If your largest sieve does not have a mass of 0, add one more above it (e.g. 50 mm).
+`SieveTest.prototype.passing()` - returns an array of "percent passing" values (to be plotted).
 
-### Additional prototype methods
+## Additional prototype methods
 Use the following prototype methods to modify your SieveTest instance:
 
 `SieveTest.prototype.addSieve(size)` - adds a sieve of a given size
@@ -54,15 +54,19 @@ Use the following prototype methods to modify your SieveTest instance:
 
 `SieveTest.prototype.sieve(size)` - returns the sieve object with the specified size
 
-### FAQ
+## FAQ
 
-**I have forms that allow users to record masses, but why aren't the results calculated properly?**
+**I have forms that allow users to record masses, but my results aren't calculated properly.**
 
 HTML forms return a string, even if `<input type="number">`. Numeric values need to be of type Number. Vue.JS can typecast input; use this syntax:
 
 `<input v-model.number="sieve.mass" type="number">`
 
-### Development:
+**I've plotted the sieve results, but my grain size distribution curve doesn't start at 100%.**
+
+For the grain size distribution to start at 100%, you need to record a size that 100% of the soil sample passed through. In other words, you should have at least one sieve size (the largest size) where sieve.mass === 0.
+
+## Development:
 To install dev dependencies and run unit tests, clone this repository and run:
 ```bash
 npm install
