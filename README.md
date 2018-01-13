@@ -4,10 +4,10 @@ A library of utilities for geotechnical analysis and lab calculations written in
 ## module: sieve.js
 Contains helper classes for storing the results of a grain size analysis (or sieve) test.
 
-#### Background:
+### Background:
 A grain size analysis is a common laboratory test used to help determine the engineering properties of soil and aggregate. A soil sample is mechanically sorted using a stack of sieves, and each sieve retains particles of a different size. The results indicate the percentage of gravels, sands, and fine particles (i.e. silt and clay) in the sample.
 
-#### Quick start:
+### Quick start:
 ```javascript
 import { SieveTest } from 'sieve';
 
@@ -45,7 +45,7 @@ Finally, to calculate the results of the test:
 
 `SieveTest.prototype.passing()` - returns an array of "percent passing" values (to be plotted). Remember, graphs need at least one point with 100% passing. If your largest sieve does not have a mass of 0, add one more above it (e.g. 50 mm).
 
-#### Additional prototype methods
+### Additional prototype methods
 Use the following prototype methods to modify your SieveTest instance:
 
 `SieveTest.prototype.addSieve(size)` - adds a sieve of a given size
@@ -54,7 +54,15 @@ Use the following prototype methods to modify your SieveTest instance:
 
 `SieveTest.prototype.sieve(size)` - returns the sieve object with the specified size
 
-#### Development:
+### FAQ
+
+**I have forms that allow users to record masses, but why aren't the results calculated properly?**
+
+HTML forms return a string, even if the input type is "number". Numeric values need to be of type Number. Vue.JS can typecast input; use this syntax:
+
+`<input v-model.number="sieve.mass">`
+
+### Development:
 To install dev dependencies and run unit tests, clone this repository and run:
 ```bash
 npm install
