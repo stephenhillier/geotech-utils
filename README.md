@@ -25,7 +25,7 @@ const sample = {
 // pass in an object with the sizes and the sample to create a new SieveTest object
 const test = new SieveTest({ sizes, sample });
 ```
-**Result:**
+An array of sieves is created:
 
 ![stack collection example](./Screenshot.png)
 
@@ -37,7 +37,7 @@ Each sieve object has a "retained" property, denoting the mass of soil retained 
 test.sieve(16).retained(155);
 
 // get the retained value by calling it with no arguments
-console.log(test.sieve(16).retained())
+console.log(test.sieve(16).retained());
 >>> 155
 ```
 
