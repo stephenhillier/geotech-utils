@@ -33,7 +33,7 @@ This simple data structure can be used with a modern web framework (like Vue.JS)
 
 Each sieve object has a "retained" property, denoting the mass of soil retained (recorded during the test). Continuing from the example above:
 ```javascript
-// record the retained value for the 20 mm sieve by passing a number into retained()
+// record the retained value for the 16 mm sieve by passing a number into retained()
 test.sieve(16).retained(155);
 
 // get the retained value by calling it with no arguments
@@ -43,7 +43,7 @@ console.log(test.sieve(16).retained())
 
 Finally, to calculate the results of the test:
 
-`SieveTest.prototype.passing()` - returns an array of "percent passing" values (to be plotted)
+`SieveTest.prototype.passing()` - returns an array of "percent passing" values (to be plotted). Remember, graphs need at least one point with 100% passing. If your largest sieve does not have a mass of 0, add one more above it (e.g. 50 mm).
 
 #### Additional prototype methods
 Use the following prototype methods to modify your SieveTest instance:
