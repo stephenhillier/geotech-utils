@@ -25,13 +25,27 @@ const sample = {
 // pass in an object with the sizes and the sample to create a new SieveTest object
 const test = new SieveTest({ sizes, sample });
 ```
-**Result:**
+An array of sieves is created:
 
 ![stack collection example](./Screenshot.png)
 
 This simple data structure can be used with a modern web framework (like Vue.JS) to generate input fields/models and store data for a lab testing or sample database application. 
 
-#### Prototype methods
+Each sieve object has a "retained" property, denoting the mass of soil retained (recorded during the test). Continuing from the example above:
+```javascript
+// record the retained value for the 16 mm sieve by passing a number into retained()
+test.sieve(16).retained(155);
+
+// get the retained value by calling it with no arguments
+console.log(test.sieve(16).retained());
+>>> 155
+```
+
+Finally, to calculate the results of the test:
+
+`SieveTest.prototype.passing()` - returns an array of "percent passing" values (to be plotted). Remember, graphs need at least one point with 100% passing. If your largest sieve does not have a mass of 0, add one more above it (e.g. 50 mm).
+
+#### Additional prototype methods
 Use the following prototype methods to modify your SieveTest instance:
 
 `SieveTest.prototype.addSieve(size)` - adds a sieve of a given size
@@ -39,21 +53,6 @@ Use the following prototype methods to modify your SieveTest instance:
 `SieveTest.prototype.removeSieve(size)` - removes the specified sieve
 
 `SieveTest.prototype.sieve(size)` - returns the sieve object with the specified size
-
-Additionally, each sieve object has a "retained" property, denoting the mass of soil retained (recorded during the test). Continuing from the example above:
-```javascript
-// record the retained value for the 20 mm sieve by passing a number into retained()
-test.sieve(16).retained(155);
-
-// get the retained value by calling it with no arguments
-console.log(test.sieve(16).retained())
->>> 155
-```
-
-Finally, to calculate the results of the test:
-
-`SieveTest.prototype.passing()` - returns an array of "percent passing" values (the results of the test)
-
 
 #### Development:
 To install dev dependencies and run unit tests, clone this repository and run:
