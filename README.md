@@ -1,5 +1,5 @@
 # geotech-utils
-[![Build Status](https://travis-ci.org/stephenhillier/geotech-utils.svg?branch=master)](https://travis-ci.org/stephenhillier/geotech-utils)
+[![Build Status](https://travis-ci.org/stephenhillier/geotech-utils.svg?branch=master)](https://travis-ci.org/stephenhillier/geotech-utils) [![Coverage Status](https://coveralls.io/repos/github/stephenhillier/geotech-utils/badge.svg?branch=master)](https://coveralls.io/github/stephenhillier/geotech-utils?branch=master)
 
 A library of utilities for geotechnical analysis and lab calculations written in JavaScript
 
