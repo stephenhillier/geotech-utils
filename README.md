@@ -1,4 +1,6 @@
 # geotech-utils
+[![Build Status](https://travis-ci.org/stephenhillier/geotech-utils.svg?branch=master)](https://travis-ci.org/stephenhillier/geotech-utils)
+
 A library of utilities for geotechnical analysis and lab calculations written in JavaScript
 
 ## module: sieve.js
