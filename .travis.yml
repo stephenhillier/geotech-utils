@@ -1,3 +1,5 @@
 language: node_js
 node_js:
   - "9"
+script: "npm run-script test"
+after_script: "nyc report --reporter=text-lcov | npx coveralls"
