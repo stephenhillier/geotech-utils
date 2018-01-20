@@ -45,7 +45,7 @@ export class SingleSieve {
   // returns the mass retained on this sieve
   // if given a number as input, also sets the mass retained (for now, it is still returned)
   retained(mass) {
-    if (mass && typeof mass === 'number' && !Number.isNaN(mass)) {
+    if (typeof mass === 'number' && !Number.isNaN(mass)) {
       this.mass = mass;
     }
     return this.mass;
