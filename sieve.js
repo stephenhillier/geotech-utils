@@ -31,7 +31,6 @@ export class SingleSieve {
           this.massUnit = 'lb';
           break;
         }
-        case 'metric': // let metric fall through to default
         default: {
           // default to metric units
           this.sizeUnit = 'mm';
