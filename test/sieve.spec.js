@@ -1,37 +1,37 @@
 /* eslint-env mocha */
-import { SingleSieve, SieveTest } from '../sieve';
+import { Sieve, SieveTest } from '../sieve';
 
 const assert = require('assert');
 
-describe('SingleSieve', () => {
+describe('Sieve', () => {
   it('should create a sieve object with a given size (try 20)', () => {
-    const sieve = new SingleSieve(20);
+    const sieve = new Sieve(20);
     assert.equal(sieve.size, 20);
   });
   it('should create a pan object when called with string "Pan"', () => {
-    const sieve = new SingleSieve('Pan');
+    const sieve = new Sieve('Pan');
     assert.equal(sieve.size, 'Pan');
   });
   it('should throw an error if not called with a number, except for special string case "Pan"', () => {
     assert.throws(() => {
-      const sieve = new SingleSieve('NotPan');
+      const sieve = new Sieve('NotPan');
       sieve.retained();
-    }, Error, 'Did not throw an error when SingleSieve was called with an invalid string');
+    }, Error, 'Did not throw an error when Sieve was called with an invalid string');
   });
   it('should create a sieve with imperial sizes if given arg "imperial"', () => {
-    const sieve = new SingleSieve(0.75, 'imperial');
+    const sieve = new Sieve(0.75, 'imperial');
     assert.equal(sieve.sizeUnit, 'in');
     assert.equal(sieve.massUnit, 'lb');
   });
 
-  describe('SingleSieve.prototype.retained()', () => {
+  describe('Sieve.prototype.retained()', () => {
     it('should set this.mass if given a number as input', () => {
-      const sieve = new SingleSieve(20);
+      const sieve = new Sieve(20);
       sieve.retained(150);
       assert.equal(sieve.mass, 150);
     });
     it('should return this.mass if not given an input', () => {
-      const sieve = new SingleSieve(20);
+      const sieve = new Sieve(20);
       sieve.retained(150);
       assert.equal(sieve.retained(), 150);
     });
@@ -39,7 +39,7 @@ describe('SingleSieve', () => {
 });
 
 describe('SieveTest', () => {
-  it('should create a collection of SingleSieve objects if given an array', () => {
+  it('should create a collection of Sieve objects if given an array', () => {
     const sizes = [20, 10, 0.08];
     const stack = new SieveTest({ sizes });
     assert.equal(stack.stack[0].size, 20);
@@ -120,10 +120,10 @@ describe('SieveTest', () => {
   });
 
   describe('SieveTest.prototype.sieve()', () => {
-    it('should return the specified SingleSieve object', () => {
+    it('should return the specified Sieve object', () => {
       const sizes = [20, 16, 12, 5];
       const test = new SieveTest({ sizes });
-      assert.equal(test.sieve(16) instanceof SingleSieve, true, 'did not return a SingleSieve object');
+      assert.equal(test.sieve(16) instanceof Sieve, true, 'did not return a Sieve object');
       assert.equal(test.sieve(16).size, 16, 'did not return the correct size');
     });
   });

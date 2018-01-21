@@ -3,12 +3,12 @@
  *
  * Utilities for storing grain size analysis (sieve) test data and calculating results
  *
- * class SingleSieve:
+ * class Sieve:
  * - creates sieve objects that have properties size (of screen) and mass (of soil retained)
  * - intended to be used by a SieveTest instance to populate the "stack" with "sieve" objects
  *
  * class SieveTest:
- * - creates a "stack" of sieves and populates it with sieve objects from class SingleSieve
+ * - creates a "stack" of sieves and populates it with sieve objects from class Sieve
  * - a "Pan" sieve is always created
  * - usage:
  *      const test = new SieveTest({ sizes, sample, units });
@@ -18,7 +18,7 @@
  *       - "units" is an optional type of unit e.g. metric or imperial. Defaults to metric.
  */
 
-export class SingleSieve {
+export class Sieve {
   constructor(size, units = 'metric') {
     if ((size && typeof size === 'number' && !Number.isNaN(size)) || (size === 'Pan')) {
       this.size = size;
@@ -38,7 +38,7 @@ export class SingleSieve {
         }
       }
     } else {
-      throw new Error('SingleSieve constructor was called without a valid size');
+      throw new Error('Sieve constructor was called without a valid size');
     }
   }
 
@@ -78,11 +78,11 @@ export class SieveTest {
     const constructorStack = []; // array declared as const but new values will be pushed
 
     if (Array.isArray(sizes)) {
-      // iterate through array of sieve sizes and add a SingleSieve object for each size
+      // iterate through array of sieve sizes and add a Sieve object for each size
       sizes.forEach((item) => {
         // skip invalid non numeric input
         if (typeof item === 'number' && !Number.isNaN(item)) {
-          const newSieve = new SingleSieve(item, units);
+          const newSieve = new Sieve(item, units);
           constructorStack.push(newSieve);
         }
       });
@@ -92,10 +92,9 @@ export class SieveTest {
     constructorStack.sort((a, b) => b.size - a.size);
 
     // Add a default 'Pan' sieve to every stack
-    constructorStack.push(new SingleSieve('Pan', units));
+    constructorStack.push(new Sieve('Pan', units));
 
     // finally, set the object's "stack" property to the array of sieve objects
-    // note: may be better to copy this array (like with splice()).
     this.stack = constructorStack;
   }
 
@@ -108,7 +107,7 @@ export class SieveTest {
   }
 
   addSieve(size) {
-    const newSieve = new SingleSieve(size);
+    const newSieve = new Sieve(size);
 
     // find the right position for the new sieve in the sorted sieve stack
     const position = this.stack.findIndex(sieve => (sieve.size === 'Pan' || newSieve.size > sieve.size));
@@ -128,7 +127,7 @@ export class SieveTest {
     }
   }
 
-  // returns the SingleSieve object of the specified size
+  // returns the Sieve object of the specified size
   sieve(size) {
     return this.stack.find(sieve => sieve.size === size);
   }
