@@ -20,31 +20,31 @@
 
 export class Sieve {
   constructor(size, units = 'metric') {
-    if ((size && typeof size === 'number' && !Number.isNaN(size)) || (size === 'Pan')) {
+    // check that the given size is a positive number. One exception: allow a special case 'Pan'
+    if ((typeof size === 'number' && !Number.isNaN(size) && size > 0) || (size === 'Pan')) {
       this.size = size;
-      this.mass = 0;
-
-      // Add units for numerical size/mass values
-      switch (units) {
-        case 'imperial': {
-          this.sizeUnit = 'in';
-          this.massUnit = 'lb';
-          break;
-        }
-        default: {
-          // default to metric units
-          this.sizeUnit = 'mm';
-          this.massUnit = 'g';
-        }
-      }
     } else {
       throw new Error('Sieve constructor was called without a valid size');
     }
+
+    this.mass = 0;
+
+    // Add units for numerical size/mass values.
+    if (units === 'imperial') {
+      this.sizeUnit = 'in';
+      this.massUnit = 'lb';
+    } else {
+      // default to metric units
+      this.sizeUnit = 'mm';
+      this.massUnit = 'g';
+    }
   }
 
-  // returns the mass retained on this sieve
-  // if given a number as input, also sets the mass retained (for now, it is still returned)
   retained(mass) {
+    /**
+     * Returns the mass retained on this sieve
+     * if given a number as input, also sets the mass retained (for now, it is still returned)
+     */
     if (typeof mass === 'number' && !Number.isNaN(mass)) {
       this.mass = mass;
     }
@@ -99,6 +99,9 @@ export class SieveTest {
   }
 
   index(size) {
+    /**
+     * Returns the position of the sieve of the given size in the sieve array (type Number)
+     */
     if (this.stack.length) {
       return this.stack.findIndex(sieve => sieve.size === size);
     }
@@ -107,6 +110,10 @@ export class SieveTest {
   }
 
   addSieve(size) {
+    /**
+     * Adds a sieve of the given size into the correct (sorted) position in the sieve array.
+     * No return value.
+     */
     const newSieve = new Sieve(size);
 
     // find the right position for the new sieve in the sorted sieve stack
@@ -117,31 +124,32 @@ export class SieveTest {
   }
 
   removeSieve(size) {
-    // this.index returns -1 if sieve is not found
+    /**
+     * Removes the specified sieve from the sieve array
+     */
     if (this.index(size) !== -1) {
       // use splice to delete the specified sieve
       this.stack.splice(this.index(size), 1);
     } else {
-      // this.index did not find sieve
       throw new Error(`Sieve with size ${size} not found`);
     }
   }
 
-  // returns the Sieve object of the specified size
   sieve(size) {
+    /**
+     * returns the Sieve object of the specified size
+     */
     return this.stack.find(sieve => sieve.size === size);
   }
 
   passing() {
     /**
-     * SieveTest.prototype.passing()
-     *
-     * Generally, the percent of soil "passing" (passing through) each sieve is plotted.
+     * Computes the percent passing (the amount of soil that was able to pass through a sieve)
+     * for each sieve in the sieve array.
      *
      * To calculate this, iterate through the sieves (starting at the top) and keep track of
      * the cumulative total mass down to that point in the stack. The percent passing at any
-     * point is the total mass of the sample minus the mass retained on the sieves so far
-     * (i.e. at and above that point).
+     * point is the total mass of the sample minus the cumulative mass retained.
      */
 
     // get the sieve array and the sample dryMass from the instance
