@@ -34,7 +34,6 @@ export class Sieve {
       this.sizeUnit = 'in';
       this.massUnit = 'lb';
     } else {
-      // default to metric units
       this.sizeUnit = 'mm';
       this.massUnit = 'g';
     }
@@ -62,18 +61,16 @@ export class SieveTest {
      *
      */
 
-    // unpack arguments
     const { sizes, units, sample } = params;
 
-    // set the sample data object for this test, or if not provided, start with empty object
+    // start with some default values if a sample object was not provided
     this.sampleData = sample || {
       wetMass: 0,
       dryMass: 0,
       washedMass: 0,
     };
 
-    // create the sieve "stack"
-    const constructorStack = []; // array declared as const but new values will be pushed
+    const constructorStack = [];
 
     if (Array.isArray(sizes)) {
       // iterate through array of sieve sizes and add a Sieve object for each size
@@ -86,13 +83,11 @@ export class SieveTest {
       });
     }
 
-    // ensure array is sorted (by size) if it was entered out of order
     constructorStack.sort((a, b) => b.size - a.size);
 
     // Add a default 'Pan' sieve to every stack
     constructorStack.push(new Sieve('Pan', units));
 
-    // finally, set the object's "stack" property to the array of sieve objects
     this.stack = constructorStack;
   }
 
@@ -150,7 +145,6 @@ export class SieveTest {
      * point is the total mass of the sample minus the cumulative mass retained.
      */
 
-    // get the sieve array and the sample dryMass from the instance
     const { stack } = this;
     const { dryMass } = this.sampleData;
 
