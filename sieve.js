@@ -54,13 +54,11 @@ export class Sieve {
 
 export class SieveTest {
   constructor(params = {}) {
-    /** Creates the SieveTest object. Accepts an object as an argument:
+    /** Creates the SieveTest object. Accepts an object with the following properties:
      *
-     * {
-     *   sizes: an array containing the sieve sizes for this test
-     *   sample: an object containing sample information
-     *   units: a string declaring the units - 'metric' (default) or 'imperial'
-     * }
+     *  sizes: an array containing the sieve sizes for this test
+     *  sample: an object containing sample information
+     *  units: a string declaring the units - 'metric' (default) or 'imperial'
      *
      */
 
@@ -180,6 +178,6 @@ export class SieveTest {
       }
       return result;
     }
-    throw new Error('SieveTest.prototype.passing() requires both dryMass and sieve properties to be present');
+    throw new Error('passing() requires both dryMass and sieve properties to be present');
   }
 }
