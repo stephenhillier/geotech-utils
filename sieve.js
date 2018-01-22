@@ -98,21 +98,15 @@ export class SieveTest {
     if (this.stack.length) {
       return this.stack.findIndex(sieve => sieve.size === size);
     }
-    // Array can't be found
     throw new Error('There are no sieves in the SieveTest stack array. Add some sieves to the test');
   }
 
   addSieve(size) {
     /**
      * Adds a sieve of the given size into the correct (sorted) position in the sieve array.
-     * No return value.
      */
     const newSieve = new Sieve(size);
-
-    // find the right position for the new sieve in the sorted sieve stack
     const position = this.stack.findIndex(sieve => (sieve.size === 'Pan' || newSieve.size > sieve.size));
-
-    // insert new sieve object into stack
     this.stack.splice(position, 0, newSieve);
   }
 
