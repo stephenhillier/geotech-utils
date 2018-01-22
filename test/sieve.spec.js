@@ -18,6 +18,16 @@ describe('Sieve', () => {
       sieve.retained();
     }, Error, 'Did not throw an error when Sieve was called with an invalid string');
   });
+  it('should throw an error if called with a negative number or 0', () => {
+    assert.throws(() => {
+      const sieve = new Sieve(-12);
+      sieve.retained();
+    }, Error, 'Did not throw an error when Sieve was called with a negative number');
+    assert.throws(() => {
+      const sieve = new Sieve(0);
+      sieve.retained();
+    }, Error, 'Did not throw an error when Sieve was called with a 0');
+  });
   it('should create a sieve with imperial sizes if given arg "imperial"', () => {
     const sieve = new Sieve(0.75, 'imperial');
     assert.equal(sieve.sizeUnit, 'in');
